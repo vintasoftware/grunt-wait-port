@@ -1,0 +1,32 @@
+{
+  "name": "grunt-wait-port",
+  "version": "0.0.1",
+  "description": "Grunt task to run a server, wait for its port to open, then run another task.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:vintasoftware/grunt-wait-port.git"
+  },
+  "keywords": [
+    "port",
+    "network",
+    "grunt",
+    "gruntplugin"
+  ],
+  "author": {
+    "name": "Flávio Juvenal"
+  },
+  "license": "BSD",
+  "main": "grunt.js",
+  "bin": {
+    "grunt-wait-port": "bin/grunt-wait-port"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/vintasoftware/grunt-wait-port/issues"
+  }
+}
