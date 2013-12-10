@@ -31,9 +31,8 @@ module.exports = function (grunt) {
       done(success);
     });
 
+    grunt.log.warn('Trying to connect with the server...');
     var detectServer = function () {
-      grunt.log.warn('Trying to connect with the server...');
-
       var client = net.connect({port: options.port}, function() {
         grunt.log.ok('Connected with server. Will run other task.');
 
