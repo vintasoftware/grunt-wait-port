@@ -1,5 +1,6 @@
 var exec = require('child_process').exec;
 var net = require('net');
+var format = require('util').format;
 
 module.exports = function (grunt) {
   "use strict";
@@ -44,7 +45,7 @@ module.exports = function (grunt) {
           var success = code === 0;
           done(success);
           grunt.log.ok('Other task is done, will stop server.');
-          exec('fuser -k ' + options.port + '/tcp');
+          killServer();
         });
       });
 
@@ -58,10 +59,20 @@ module.exports = function (grunt) {
       });
     };
 
+    var killServer = function () {
+      // try to kill server with fuser:
+      exec(format('fuser -k %d/tcp', options.port), function (error) {
+        if (error !== null) {
+          // since fuser failed, try with lsof + kill:
+          exec(format('kill $(lsof -t -i tcp:%d)', options.port));
+        }
+      });
+    };
+
     detectServer();
 
     process.on('exit', function() {
-      exec('fuser -k ' + options.port + '/tcp');
+      killServer();
     });
   });
 
